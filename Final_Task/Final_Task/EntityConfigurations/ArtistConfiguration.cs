@@ -22,15 +22,15 @@ namespace Final_Task.EntityConfigurations
             builder.HasMany(a => a.Songs)
                .WithMany(a => a.Artists)
                .UsingEntity<Dictionary<string, object>>(
-                   "Supply",
+                   "SongArtist",
                    j => j
                        .HasOne<Song>()
                        .WithMany()
-                       .HasForeignKey("ProductId"),
+                       .HasForeignKey("SongId"),
                    j => j
                        .HasOne<Artist>()
                        .WithMany()
-                       .HasForeignKey("CompanyId"));
+                       .HasForeignKey("ArtistId"));
         }
     }
 }
