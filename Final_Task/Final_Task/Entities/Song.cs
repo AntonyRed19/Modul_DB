@@ -8,5 +8,9 @@ namespace Final_Task.Entities
 {
     public class Song
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public TimeSpan Duration { get; set; }
+        public DateTime RealesDate { get; set; }
     }
 }
