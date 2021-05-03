@@ -14,6 +14,6 @@ namespace Final_Task.Entities
         public DateTime RealesDate { get; set; }
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
-        public List<Artist> Employees { get; set; } = new List<Artist>();
+        public List<Artist> Artists { get; set; } = new List<Artist>();
     }
 }

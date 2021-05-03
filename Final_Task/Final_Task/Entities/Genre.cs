@@ -10,6 +10,6 @@ namespace Final_Task.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public List<Song> Employees { get; set; } = new List<Song>();
+        public List<Song> Songs { get; set; } = new List<Song>();
     }
 }
