@@ -14,5 +14,6 @@ namespace Final_Task.Entities
         public string Phone { get; set; }
         public string Email { get; set; }
         public string InstagramUrl { get; set; }
+        public List<Song> Employees { get; set; } = new List<Song>();
     }
 }

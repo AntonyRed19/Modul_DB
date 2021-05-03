@@ -12,5 +12,8 @@ namespace Final_Task.Entities
         public string Title { get; set; }
         public TimeSpan Duration { get; set; }
         public DateTime RealesDate { get; set; }
+        public int GenreId { get; set; }
+        public Genre Genre { get; set; }
+        public List<Artist> Employees { get; set; } = new List<Artist>();
     }
 }
