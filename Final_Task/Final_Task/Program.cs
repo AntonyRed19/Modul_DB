@@ -11,6 +11,16 @@ namespace Final_Task
         {
             await using (var context = new SampleContextFactory().CreateDbContext(args))
             {
+                await new Linq(context).Task1();
+            }
+
+            await using (var context = new SampleContextFactory().CreateDbContext(args))
+            {
+                await new Linq(context).Task2();
+            }
+
+            await using (var context = new SampleContextFactory().CreateDbContext(args))
+            {
                 await new Linq(context).Task3();
             }
 
