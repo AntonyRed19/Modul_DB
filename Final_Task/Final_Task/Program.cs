@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Threading.Tasks;
+using EFCoreDemo;
+using Final_Task.Services;
 
 namespace Final_Task
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            await using (var context = new SampleContextFactory().CreateDbContext(args))
+            {
+                await new Linq(context).Task3();
+            }
+
+            Console.Read();
         }
     }
 }
