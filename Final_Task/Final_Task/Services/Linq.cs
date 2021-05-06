@@ -19,16 +19,16 @@ namespace Final_Task.Services
 
         public async Task Task1()
         {
-            var result = await _context.Songs
+            var result = await _context.SongandArtist
                 .Select(s => new
                 {
-                    NameofSong = s.Title,
-                    NameofArtist = string.Join(" ", s.Artists.Select(a => a.Name)),
-                    Genre = s.Genre.Title
+                    NameofArtist = s.Artist.Name,
+                    NameofSong = s.Song.Title,
+                    Genre = s.Song.Genre.Title
                 }).ToListAsync();
             foreach (var item in result)
             {
-                Console.WriteLine($"NameofSong - {item.NameofSong}, NameofArtist - {item.NameofArtist}, Genre - {item.Genre}");
+                Console.WriteLine($"NameofSong - {item.NameofSong}, NameofArtist - {item.NameofArtist} Genre - {item.Genre}");
             }
         }
 
@@ -52,8 +52,8 @@ namespace Final_Task.Services
             DateTime dateofbirth = _context.Artists.Max(m => m.DateofBirth);
 
             var result = await _context.Songs
-                .Where(w => w.RealesDate > dateofbirth)
-                .Select(s => s.Title).ToListAsync();
+                .Where(w => w.RealesDate < _context.Artists.Max(m => m.DateofBirth))
+                .ToListAsync();
 
             foreach (var item in result)
             {

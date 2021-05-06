@@ -32,7 +32,10 @@ namespace Final_Task.Migrations
                         .HasColumnName("DateofBirth");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("Email");
 
                     b.Property<string>("InstagramUrl")
                         .IsRequired()
@@ -108,15 +111,23 @@ namespace Final_Task.Migrations
                     b.ToTable("Song");
                 });
 
-            modelBuilder.Entity("SongArtist", b =>
+            modelBuilder.Entity("Final_Task.Entities.SongandArtist", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ArtistId")
                         .HasColumnType("int");
 
                     b.Property<int>("SongId")
                         .HasColumnType("int");
 
-                    b.HasKey("ArtistId", "SongId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArtistId");
 
                     b.HasIndex("SongId");
 
@@ -134,24 +145,38 @@ namespace Final_Task.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("SongArtist", b =>
+            modelBuilder.Entity("Final_Task.Entities.SongandArtist", b =>
                 {
-                    b.HasOne("Final_Task.Entities.Artist", null)
-                        .WithMany()
+                    b.HasOne("Final_Task.Entities.Artist", "Artist")
+                        .WithMany("SongArtists")
                         .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Final_Task.Entities.Song", null)
-                        .WithMany()
+                    b.HasOne("Final_Task.Entities.Song", "Song")
+                        .WithMany("SongArtists")
                         .HasForeignKey("SongId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Artist");
+
+                    b.Navigation("Song");
+                });
+
+            modelBuilder.Entity("Final_Task.Entities.Artist", b =>
+                {
+                    b.Navigation("SongArtists");
                 });
 
             modelBuilder.Entity("Final_Task.Entities.Genre", b =>
                 {
                     b.Navigation("Songs");
+                });
+
+            modelBuilder.Entity("Final_Task.Entities.Song", b =>
+                {
+                    b.Navigation("SongArtists");
                 });
 #pragma warning restore 612, 618
         }

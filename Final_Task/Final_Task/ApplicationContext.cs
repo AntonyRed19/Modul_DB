@@ -16,6 +16,8 @@ namespace Task3
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Song> Songs { get; set; }
+        public DbSet<SongandArtist> SongandArtist { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging().LogTo(Console.WriteLine, LogLevel.Information);
@@ -26,6 +28,7 @@ namespace Task3
             modelBuilder.ApplyConfiguration(new ArtistConfiguration());
             modelBuilder.ApplyConfiguration(new GenreConfiguration());
             modelBuilder.ApplyConfiguration(new SongConfiguration());
+            modelBuilder.ApplyConfiguration(new SongandArtistConfiguration());
         }
     }
 }

@@ -19,18 +19,7 @@ namespace Final_Task.EntityConfigurations
             builder.Property(a => a.DateofBirth).IsRequired().HasColumnName("DateofBirth").HasColumnType("datetime");
             builder.Property(a => a.Phone).IsRequired().HasColumnName("Phone").HasMaxLength(13);
             builder.Property(a => a.InstagramUrl).IsRequired().HasColumnName("InstagramUrl").HasMaxLength(50);
-            builder.HasMany(a => a.Songs)
-               .WithMany(a => a.Artists)
-               .UsingEntity<Dictionary<string, object>>(
-                   "SongArtist",
-                   j => j
-                       .HasOne<Song>()
-                       .WithMany()
-                       .HasForeignKey("SongId"),
-                   j => j
-                       .HasOne<Artist>()
-                       .WithMany()
-                       .HasForeignKey("ArtistId"));
+            builder.Property(a => a.Email).IsRequired().HasColumnName("Email").HasMaxLength(50);
         }
     }
 }
